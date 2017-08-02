@@ -418,6 +418,18 @@
                 "snow": "Nieve",
                 "tstorms": "Tormenta"
             }
+        },
+        "mapgen": {
+            "commands": [
+                {
+                    "command": "/mapa",
+                    "friendly": "^[Mm]apilla",
+                    "shortcut": "^!mapilla",
+                    "description": "Generar un mapa aleatorio",
+                    "parameters": []
+                }
+            ],
+            "description": "Genera un mapa con tierra y agua, al azar."
         }
     }
 }

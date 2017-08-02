@@ -461,6 +461,18 @@
                 "snow": "Snow",
                 "tstorms": "Thunder Storm"
             }
+        },
+        "mapgen": {
+            "commands": [
+                {
+                    "command": "/map",
+                    "friendly": "^[Mm]ap",
+                    "shortcut": "/m",
+                    "description": "Generate a land map.",
+                    "parameters": []
+                }
+            ],
+            "description": "Generate a random land map."
         }
     }
 }

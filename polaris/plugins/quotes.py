@@ -1,6 +1,7 @@
 from polaris.utils import get_input, is_command
 from polaris.types import AutosaveDict
 from re import findall
+from random import randint
 
 class plugin(object):
     # Loads the text strings from the bots language #
@@ -99,7 +100,7 @@ class plugin(object):
                     else:
                         reply = m.id
 
-                    self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
+                    randint(0,4) or self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
                     count -= 1
 
                 if count == 0:
