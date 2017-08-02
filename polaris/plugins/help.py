@@ -7,11 +7,11 @@ class plugin(object):
         self.bot = bot
         self.commands = self.bot.trans.plugins.help.commands
         self.commands.append({
-            'command': '/help',
+            'command': '/ayu2',
             'hidden': True
         })
         self.commands.append({
-            'command': '/genhelp',
+            'command': '/ayuda',
             'hidden': True
         })
         self.description = self.bot.trans.plugins.help.description

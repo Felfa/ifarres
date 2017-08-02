@@ -45,6 +45,6 @@ class plugin(object):
             photo = None
 
         if photo:
-            return self.bot.send_message(m, photo, 'photo', extra={'caption': caption})
+            return self.bot.send_message(m, photo, 'photo') #extra={'caption': caption})
         else:
             return self.bot.send_message(m, self.bot.trans.errors.download_failed)

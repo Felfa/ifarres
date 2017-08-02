@@ -18,7 +18,7 @@ class plugin(object):
         params = {
             'q': input,
             'alt': 'json',
-            'num': 8,
+            'num': 10,
             'start': 1,
             'key': self.bot.config.api_keys.google_developer_console,
             'cx': self.bot.config.api_keys.google_custom_search_engine

@@ -1,0 +1,423 @@
+{
+    "errors": {
+        "missing_parameter": "Aquí falta algo.",
+        "connection_error": "No he podido conectarme.",
+        "no_results": "No he encontrado nada. Hay que joderse.",
+        "invalid_argument": "Argumento no válido.",
+        "invalid_syntax": "Error de sintaxis.",
+        "permission_required": "No tienes permiso.",
+        "missing_id": "El ID no existe o te lo has inventado.",
+        "needs_reply": "¿A quién? ¿Dónde está la <b>respuesta</b>?",
+        "group_only": "Eso cuando lo hagas a través de un <b>grupo</b>.",
+        "private_only": "Igual tendrás que hacerlo por <b>privado</b>.",
+        "admin_required": "No, caca, eso no se toca.",
+        "download_failed": "Ha fallado la descarga. Hay que joderse.",
+        "exception_found": "¡Se ha encontrado una excepción! No se trata de ninguna regla.",
+        "unknown": "No sé por qué razón, pero ha ocurrido un error."
+    },
+    "plugins": {
+        "help": {
+            "commands": [
+                {
+                    "command": "/ayuda ",
+                    "friendly": "^!ayuda",
+                    "shortcut": "/h",
+                    "description": "Ayuda sobre los comandos.",
+                    "parameters": [
+                        { "comando": false }
+                    ]
+                }
+            ],
+            "description": "Muestro cómo funciono.",
+            "strings": {
+                "commands": "<b>Comandos</b>:"
+            }
+        },
+        "tags": {
+            "commands": [
+                {
+                    "command": "/etiqueta",
+                    "friendly": "^!etiqueta",
+                    "description": "Guarda una etiqueta para un usuario o grupo.",
+                    "parameters": [
+                        { "tagname": true }
+                    ],
+                    "hidden": true
+                },
+                {
+                    "command": "/desetiqueta",
+                    "friendly": "^!desetiqueta",
+                    "description": "Elimina la etiqueta de un usuario o grupo",
+                    "parameters": [
+                        { "tagname": true }
+                    ],
+                    "hidden": true
+                }
+            ],
+            "description": "Etiqueta a usuarios o grupos.",
+            "strings": {
+                "tagged": "<b>👤 %s</b>\n🏷 +%s",
+                "untagged": "<b>👤 %s</b>\n🏷 -%s",
+                "already_tagged": "<b>👤 %s</b>\n🏷 %s",
+                "not_tagged": "<b>👤 %s</b>\n🏷"
+            }
+        },
+        "administration": {
+            "commands": [
+                {
+                    "command": "/admin",
+                    "friendly": "^!admin",
+                    "shortcut": "/adm",
+                    "description": "Lista de comandos para la administración de los grupos.",
+                    "parameters": []
+                },
+                {
+                    "command": "/grupos",
+                    "friendly": "^!g",
+                    "shortcut": "/g",
+                    "description": "Lista todos los grupos.",
+                    "parameters": []
+                },
+                {
+                    "command": "/inviteme",
+                    "friendly": "^!inviteme",
+                    "shortcut": "/j",
+                    "description": "Unirse a un grupo.",
+                    "parameters": [
+                        { "nombre | alias": true }
+                    ]
+                },
+                {
+                    "command": "/info",
+                    "friendly": "^!info",
+                    "shortcut": "/i",
+                    "description": "Muestra información del grupo en el que me encuentre.",
+                    "parameters": [],
+                    "hidden": true
+                },
+                {
+                    "command": "/reglas",
+                    "friendly": "^!reglas",
+                    "shortcut": "/r",
+                    "description": "Muestra las reglas del grupo.",
+                    "parameters": [],
+                    "hidden": true
+                },
+                {
+                    "command": "/kick",
+                    "friendly": "^!kick",
+                    "shortcut": "/k",
+                    "description": "Echar a un usuario específico, si tengo permisos, claro.",
+                    "parameters": [
+                        { "name | id": true }
+                    ],
+                    "hidden": true
+                },
+                {
+                    "command": "/ban",
+                    "friendly": "^!ban",
+                    "shortcut": "/b",
+                    "description": "Prohibir el acceso a un usuario en concreto, también sólo si tengo permisos.",
+                    "parameters": [
+                        { "name | id": true }
+                    ],
+                    "hidden": true
+                },
+                {
+                    "command": "/config",
+                    "friendly": "^!config",
+                    "shortcut": "/c",
+                    "description": "Configurar grupo.",
+                    "parameters": [
+                        { "id | alias": true }
+                    ],
+                    "hidden": true
+                },
+                {
+                    "command": "^new_chat_member$",
+		    "friendly": "^!motd",
+		    "shortcut": "/motd",
+                    "description": "Muestra el mensaje del día y las reglas a los usuarios que vayan entrando.",
+                    "parameters": [],
+                    "hidden": true
+                }
+            ],
+            "description": "Rollos para la administración de grupos.",
+            "strings": {
+                "commands": "<b>Comandos</b>:",
+                "added": "<b>%s</b> fue añadido a la lista de grupos.",
+                "already_added": "<b>%s</b> ya está en la lista de grupos.",
+                "not_added": "<b>%s</b> no está en la lista de grupos.",
+                "set": "Variable <b>%s</b> guardada.",
+                "groups": "<b>Grupos</b>:",
+                "rules": "<b>Reglas</b>:",
+                "join": "Enlace de invitación",
+                "nolink": "<i>Sin enlace de invitación</i>",
+                "norules": "<i>Sin reglas</i>",
+                "commands": "<b>Comandos de grupo</b>:",
+                "notfound": "<i>Sin reglas</i>.",
+                "new_chat_member": "Nuevo miembro",
+                "done": "<b>%s</b> configurado con éxito.",
+                "cancel": "No te preguntaré nada más sobre <b>%s</b>, ya he guardado todo.",
+                "yes": "Sí",
+                "ask_to_add": "¿Añadir el grupo <b>%s</b>? Responde <b>sí</b> o <b>no</b>.",
+                "ask_link": "Envíame el enlace de invitación de <b>%s</b>, o pulsa en /cancelar para omitir este paso y terminar.",
+                "ask_alias": "Envíame el alias que quieras usar para <b>%s</b>. Se utilizará para que hasta las personas más torpes luego sepan cómo entrar al grupo. O pulsa en /cancelar si quieres omitir este paso y terminar.",
+                "ask_rules": "Envíame las normas de <b>%s</b>, separando cada norma por cada líneas y sin poner numeritos al principio de cada una. Sé que es mucho pedir, pero también puedes /cancelar esto y pasamos a otra cosa.",
+                "ask_motd": "Enviame el mensaje del día de <b>%s</b>, que se usa normalmente para describir el grupo o para publicar anuncios del mismo. O bien puedes /cancelar este paso."
+            }
+        },
+        "echo": {
+            "commands": [
+                {
+                    "command": "/repite",
+                    "friendly": "^!repite ",
+                    "shortcut": "/r",
+                    "description": "Repito lo que me pidas, sólo eso.",
+                    "parameters": [
+                        { "texto": true }
+                    ]
+                }
+            ],
+            "description": "El plugin más simple del mundo."
+        },
+        "image_search": {
+            "commands": [
+                {
+                    "command": "/img",
+                    "friendly": "^[Ff]oto de ",
+                    "shortcut": "!img",
+                    "description": "Devuelve una imagen al azar.",
+                    "parameters": [
+                        { "consulta": true }
+                    ]
+                },
+                {
+                    "command": "/imgsfw",
+                    "friendly": "^[Ff]oto segura de ",
+                    "description": "Devuelve una imagen evitando imágenes NSFW a toda costa.",
+                    "parameters": [
+                        { "query": true }
+                    ],
+                    "hidden": true
+                }
+            ],
+            "description": "Devuelve una imagen de Google."
+        },
+        "web_search": {
+            "commands": [
+                {
+                    "command": "/google",
+                    "friendly": "^Buscar ",
+                    "shortcut": "!google",
+                    "description": "Realiza una búsqueda en Google. No te preocupes, sólo se quedará con mis datos personales como bot. Que se jodan.",
+                    "parameters": [
+                        { "consulta": true }
+                    ]
+                },
+                {
+                    "command": "/gsuerte",
+                    "shortcut": "/gs",
+                    "description": "Devuelve el primer resultado que encuentre en Google.",
+                    "parameters": [
+                        { "consulta": true }
+                    ]
+                },
+                {
+                    "command": "/gnsfw",
+                    "description": "Busca en Google con el filtro NSFW desactivado.",
+                    "parameters": [
+                        { "consulta": true }
+                    ],
+                    "hidden": true
+                }
+            ],
+            "description": "Búsquedas en Google.",
+            "strings": {
+                "results": "<b>Resultados de</b> <i>%s</i>:"
+            }
+        },
+        "youtube_search": {
+            "commands": [
+                {
+                    "command": "/youtube",
+                    "friendly": "^[Pp]on ",
+                    "shortcut": "^[Vv]ídeo de ",
+                    "description": "Devuelve el primer resultado de lo que encuentre por YouTube con esos términos.",
+                    "parameters": [
+                        { "consulta": true }
+                    ]
+                },
+                {
+                    "command": "/yl",
+                    "friendly": "^[Vv]ídeos de ",
+                    "description": "Si con uno no te sirve, con este comando te devolveré 5, fíjate lo que te digo.",
+                    "parameters": [
+                        { "consulta": true }
+                    ]
+                }
+            ],
+            "description": "Búsquedas en YouTube.",
+            "strings": {
+                "results": "<b>Resultados de</b> <i>%s</i>:"
+            }
+        },
+        "about": {
+            "commands": [
+                {
+                    "command": "/acerca",
+                    "friendly": "^¿[Qq]ui[ée]n es (Ifarres|Arate)?",
+                    "description": "Información sobre mí.",
+                    "parameters": []
+                }
+            ],
+            "description": "Información sobre el bot.",
+            "strings": {
+                "greeting": "Me llamo <b>%s</b> y tú no. Encantado y esas cosas que se dicen siempre.",
+                "license": "<b>Ifarres</b> (incluyendo plugins y documentación) es <b>software libre</b>; tienes derecho a ver el código, distribuirlo, estudiarlo y modificarlo bajo los términos de la licencia <b>GNU AGPLv3</b>.",
+                "version": "Usando <a href=\"https://git.io/v7uTH\">ifarres</a>, versión <code>%s</code> por @Mierda (derivado de <a href=\"https://git.io/polaris\">polaris</a>).",
+                "help": "Si no tienes ni idea de cómo funciono, envíame el comando %shelp y tan contentos.",
+                "stats": "👤 %s usuarios\n👥 %s grupos"
+            }
+        },
+        "pins": {
+            "commands": [
+                {
+                    "command": "/pins",
+                    "friendly": "^!pins",
+                    "description": "Lista los pins del usuario actual.",
+                    "parameters": []
+                },
+                {
+                    "command": "/pin",
+                    "friendly": "^!pin",
+                    "description": "Guarda un pin.",
+                    "parameters": [
+                        {"nombre": true}
+                    ]
+                },
+                {
+                    "command": "/unpin",
+                    "friendly": "^!unpin",
+                    "description": "Elimina un pin.",
+                    "parameters": [
+                        {"nombre": true}
+                    ]
+                }
+            ],
+            "description": "Comandos para torpes",
+            "strings": {
+                "pins": "<b>Has creado %s pins</b>:",
+                "no_pins": "Aún no tienes ningún pin.",
+                "pinned": "Se ha guardado el pin <b>#%s</b>.",
+                "unpinned": "Se ha guardado el pin <b>#%s</b>.",
+                "already_pinned": "<b>#%s</b> ya existe, así que no lo guardaré.",
+                "not_found": "<b>#%s</b> no existe. ¿Te lo has inventado?",
+                "not_creator": "No tienes derecho a eliminar <b>#%s</b>."
+            }
+        },
+        "reminders": {
+            "commands": [
+                {
+                    "command": "/recordar",
+                    "friendly": "!recordar",
+                    "shortcut": "/rec",
+                    "description": "Guardar un recordatorio.",
+                    "parameters": [
+                        {"tiempo": true},
+                        {"mensaje": true}
+                    ]
+                }
+             ],
+            "description": "Envía un mensaje con retraso.",
+            "strings": {
+                "wrongdelay": "El retraso se ha de especificar en el siguiente formato: '(entero)(s|m|h|d)'.\nEg: '2h' para enviarlo en 2 horas.",
+                "noreminder": "Pero dime qué quieres que te recuerde, merluzo.",
+                "added": "<b>%s</b>, te recordaré <b>%s</b> en <i>%s</i>."
+            }
+        },
+        "russian_roulette": {
+            "commands": [
+                {
+                    "command": "/ruleta",
+                    "friendly": "^Ruleta rusa",
+                    "description": "Ruleta rusa: si pierdes, serás baneado del grupo.",
+                    "parameters": []
+                }
+             ],
+            "description": "Ruleta rusa. Si pierdes, serás expulsado del grupo y no podrás volver a entrar.",
+            "strings": {
+                "empty": "Pues vaya chorra tienes, %s. Quedan <b>%s</b> tiros.",
+                "bang": "<b>¡Bang!</b> %s ha muerto. Nuevo premio Darwin.",
+                "cant_bang": "<b>¡Bang!</b> %s, que sepas que estás muerto. Si fuera por mí, ya estarías fuera de este grupo."
+            }
+        },
+        "text_to_speech": {
+            "commands": [
+                {
+                    "command": "/voz",
+                    "friendly": "^!voz",
+                    "shortcut": "/v",
+                    "description": "Convierte texto a voz (beta).",
+                    "parameters": [
+                        {"mensaje": true}
+                    ]
+                }
+             ],
+            "description": "Convierte texto a voz."
+        },
+        "weather": {
+            "commands": [
+                {
+                    "command": "/clima",
+                    "friendly": "^!clima ",
+                    "shortcut": "/cli",
+                    "description": "Clima actual en tal sitio.",
+                    "parameters": [
+                        {"lugar": true}
+                    ]
+                },
+                {
+                    "command": "/prono",
+                    "friendly": "Pronóstico de ",
+                    "shortcut": "/p",
+                    "description": "Pronóstico del tiempo en 3 días.",
+                    "parameters": [
+                        {"lugar": true}
+                    ]
+                }
+            ],
+            "description": "Muestra el tiempo en distintos lugares.",
+            "strings": {
+                "title": "<b>El tiempo en %s (%s)</b>:",
+                "titleforecast": "<b>Pronóstico de %s (%s)</b>:",
+                "feelslike": " (Unos %sºC de temperatura)",
+                "sunday": "domingo",
+                "monday": "lunes",
+                "tuesday": "martes",
+                "wednesday": "miércoles",
+                "thursday": "jueves",
+                "friday": "viernes",
+                "saturday": "sábado",
+                "clear": "Despejado",
+                "sunny": "Soleado",
+                "chancesnow": "Puede nevar",
+                "chanceflurries": "Puede haber ráfagas de nieve",
+                "chancerain": "Puede llover",
+                "chancesleet": "Puede caer aguanieve",
+                "chancetstorms": "Probablemente habrá tormenta",
+                "cloudy": "Nublado",
+                "flurries": "Ráfagas de nieve",
+                "fog": "Niebla",
+                "hazy": "Neblina",
+                "mostlycloudy": "Muy nublado",
+                "partlycloudy": "Parcialmente nublado",
+                "partlysunny": "Nubes y claros",
+                "sleet": "Aguanieve",
+                "rain": "Lluvia",
+                "snow": "Nieve",
+                "tstorms": "Tormenta"
+            }
+        }
+    }
+}

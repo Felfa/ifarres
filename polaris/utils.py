@@ -363,7 +363,7 @@ def mp3_to_ogg(input):
 
     with open(os.devnull, "w") as DEVNULL:
         converter = subprocess.check_call(
-            ['ffmpeg', '-i', input, '-ac', '1', '-c:a', 'opus', '-b:a', '16k', '-y', output],
+            ['ffmpeg', '-i', input, '-ac', '1', '-c:a', 'libopus', '-b:a', '16k', '-y', output],
             stdout=DEVNULL)
 
     return output

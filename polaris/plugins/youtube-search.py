@@ -17,7 +17,7 @@ class plugin(object):
         params = {
             'type': 'video',
             'part': 'snippet',
-            'maxResults': '8',
+            'maxResults': '5',
             'q': input,
             'key': self.bot.config.api_keys.google_developer_console
         }
