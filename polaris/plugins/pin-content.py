@@ -26,7 +26,7 @@ class plugin(object):
             if len(pins) > 0:
                 text = self.bot.trans.plugins.pins.strings.pins % len(pins)
                 for pin in pins:
-                    text += '\n • #%s' % pin
+                    text += '\n • %s' % pin
 
             else:
                 text = self.bot.trans.plugins.pins.strings.no_pins
@@ -42,8 +42,8 @@ class plugin(object):
             if not input:
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
-            if input.startswith('#'):
-                input = input.lstrip('#')
+            #if input.startswith('#'):
+            #    input = input.lstrip('#')
             input = input.lower()
 
             if not m.reply:
@@ -68,8 +68,8 @@ class plugin(object):
             if not input:
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
-            if input.startswith('#'):
-                input = input.lstrip('#')
+            #if input.startswith('#'):
+            #    input = input.lstrip('#')
             input = input.lower()
 
             if not input in self.pins:
@@ -90,7 +90,7 @@ class plugin(object):
         # Check what pin was triggered #
         else:
             # Finds the first 3 pins of the message and sends them. #
-            pins = findall(r"#(\w+)", m.content.lower())
+            pins = findall(r"(\w+)", m.content.lower())
             count = 3
 
             for pin in pins:
@@ -101,7 +101,7 @@ class plugin(object):
                     else:
                         reply = m.id
 
-                    self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}, reply = reply)
+                    self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
                     count -= 1
 
                 if count == 0:
@@ -111,9 +111,9 @@ class plugin(object):
     def update_triggers(self):
         # Add new triggers #
         for pin, attributes in self.pins.items():
-            if not next((i for i,d in enumerate(self.commands) if 'command' in d and d.command == '#' + pin), None):
+            if not next((i for i,d in enumerate(self.commands) if 'command' in d and d.command == pin), None):
                 self.commands.append({
-                    'command': '#' + pin,
+                    'command': pin,
                     'hidden': True
                 })
 

@@ -283,23 +283,23 @@
         "pins": {
             "commands": [
                 {
-                    "command": "/pins",
-                    "friendly": "^!pins",
-                    "description": "Lista los pins del usuario actual.",
+                    "command": "/citas",
+                    "friendly": "^!citas",
+                    "description": "Lista todas las citas guardadas en el chat actual.",
                     "parameters": []
                 },
                 {
-                    "command": "/pin",
-                    "friendly": "^!pin",
-                    "description": "Guarda un pin.",
+                    "command": "/aprenda",
+                    "friendly": "^!aprenda",
+                    "description": "Guarda una cita con el texto al que se responde asignándole una palabra clave.",
                     "parameters": [
                         {"nombre": true}
                     ]
                 },
                 {
-                    "command": "/unpin",
-                    "friendly": "^!unpin",
-                    "description": "Elimina un pin.",
+                    "command": "/olvida",
+                    "friendly": "^!olvida",
+                    "description": "Desaprenderé la cita con el nombre clave que me digas.",
                     "parameters": [
                         {"nombre": true}
                     ]
@@ -307,13 +307,13 @@
             ],
             "description": "Comandos para torpes",
             "strings": {
-                "pins": "<b>Has creado %s pins</b>:",
-                "no_pins": "Aún no tienes ningún pin.",
-                "pinned": "Se ha guardado el pin <b>#%s</b>.",
-                "unpinned": "Se ha guardado el pin <b>#%s</b>.",
-                "already_pinned": "<b>#%s</b> ya existe, así que no lo guardaré.",
-                "not_found": "<b>#%s</b> no existe. ¿Te lo has inventado?",
-                "not_creator": "No tienes derecho a eliminar <b>#%s</b>."
+                "pins": "<b>Has creado %s citas</b>:",
+                "no_pins": "No hay nada que mostrar aquí.",
+                "pinned": "¡Sí, señor! Se ha guardado con el nombre: <b>%s</b>.",
+                "unpinned": "Se ha eliminado la cita <b>%s</b>.",
+                "already_pinned": "<b>%s</b> ya existe, así que no lo guardaré.",
+                "not_found": "<b>%s</b> no existe. ¿Te lo has inventado?",
+                "not_creator": "No tienes derecho a eliminar la cita <b>%s</b>."
             }
         },
         "reminders": {
