@@ -42,9 +42,8 @@ class plugin(object):
             if not input:
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
-            #if input.startswith('#'):
-            #    input = input.lstrip('#')
             input = input.lower()
+            input = input.split(' ', 1)[0]
 
             if not m.reply:
                 return self.bot.send_message(m, self.bot.trans.errors.needs_reply, extra={'format': 'HTML'})
@@ -68,9 +67,8 @@ class plugin(object):
             if not input:
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
-            #if input.startswith('#'):
-            #    input = input.lstrip('#')
             input = input.lower()
+            input = input.split(' ', 1)[0]
 
             if not input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.not_found % input, extra={'format': 'HTML'})
