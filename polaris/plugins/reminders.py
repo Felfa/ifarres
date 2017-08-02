@@ -50,13 +50,13 @@ class plugin(object):
         self.reminders.store_database()
 
         if unit == 's':
-            delay = delay.replace('s', ' seconds')
+            delay = delay.replace('s', ' segundos')
         if unit == 'm':
-            delay = delay.replace('m', ' minutes')
+            delay = delay.replace('m', ' minutos')
         if unit == 'h':
-            delay = delay.replace('h', ' hours')
+            delay = delay.replace('h', ' horas')
         if unit == 'd':
-            delay = delay.replace('d', ' days')
+            delay = delay.replace('d', ' días')
 
         message = self.bot.trans.plugins.reminders.strings.added % (m.sender.first_name, delay, text)
 
