@@ -12,7 +12,8 @@
         "private_only": "Igual tendrás que hacerlo por <b>privado</b>.",
         "admin_required": "No, caca, eso no se toca.",
         "download_failed": "Ha fallado la descarga. Hay que joderse.",
-        "exception_found": "¡Se ha encontrado una excepción! No se trata de ninguna regla.",
+        "exception_found": "Ha habido una excepción no controlada; no te preocupes, será notificada.",
+        "send_error": "No he podido enviar el mensaje. Creo que no estoy dentro del grupo o no existe.",
         "unknown": "No sé por qué razón, pero ha ocurrido un error."
     },
     "plugins": {
@@ -75,14 +76,14 @@
                     "command": "/grupos",
                     "friendly": "^!g",
                     "shortcut": "/g",
-                    "description": "Lista todos los grupos.",
+                    "description": "Lista todos los grupos que he registrado.",
                     "parameters": []
                 },
                 {
                     "command": "/inviteme",
                     "friendly": "^!inviteme",
                     "shortcut": "/j",
-                    "description": "Unirse a un grupo.",
+                    "description": "Unirse a un grupo listado.",
                     "parameters": [
                         { "nombre | alias": true }
                     ]
@@ -91,7 +92,7 @@
                     "command": "/info",
                     "friendly": "^!info",
                     "shortcut": "/i",
-                    "description": "Muestra información del grupo en el que me encuentre.",
+                    "description": "Muestra información del grupo actual.",
                     "parameters": [],
                     "hidden": true
                 },
@@ -99,7 +100,7 @@
                     "command": "/reglas",
                     "friendly": "^!reglas",
                     "shortcut": "/r",
-                    "description": "Muestra las reglas del grupo.",
+                    "description": "Muestra las reglas del grupo actual.",
                     "parameters": [],
                     "hidden": true
                 },
@@ -109,7 +110,7 @@
                     "shortcut": "/k",
                     "description": "Echar a un usuario específico, si tengo permisos, claro.",
                     "parameters": [
-                        { "name | id": true }
+                        { "nombre | id": true }
                     ],
                     "hidden": true
                 },
@@ -119,7 +120,7 @@
                     "shortcut": "/b",
                     "description": "Prohibir el acceso a un usuario en concreto, también sólo si tengo permisos.",
                     "parameters": [
-                        { "name | id": true }
+                        { "nombre | id": true }
                     ],
                     "hidden": true
                 },
@@ -127,17 +128,24 @@
                     "command": "/config",
                     "friendly": "^!config",
                     "shortcut": "/c",
-                    "description": "Configurar grupo.",
+                    "description": "Registrar grupo.",
                     "parameters": [
                         { "id | alias": true }
                     ],
                     "hidden": true
                 },
                 {
-                    "command": "^new_chat_member$",
-		    "friendly": "^!motd",
-		    "shortcut": "/motd",
+                    "command": "/motd",
+					"friendly": "^!motd",
                     "description": "Muestra el mensaje del día y las reglas a los usuarios que vayan entrando.",
+                    "parameters": [],
+                    "hidden": true
+                },
+                {
+                    "command": "/vaso",
+					"friendly": "^!vaso",
+					"shortcut": "/msg",
+                    "description": "Vaso comunicante (envía un mensaje a otro grupo).",
                     "parameters": [],
                     "hidden": true
                 }
@@ -161,10 +169,14 @@
                 "cancel": "No te preguntaré nada más sobre <b>%s</b>, ya he guardado todo.",
                 "yes": "Sí",
                 "ask_to_add": "¿Añadir el grupo <b>%s</b>? Responde <b>sí</b> o <b>no</b>.",
-                "ask_link": "Envíame el enlace de invitación de <b>%s</b>, o pulsa en /cancelar para omitir este paso y terminar.",
-                "ask_alias": "Envíame el alias que quieras usar para <b>%s</b>. Se utilizará para que hasta las personas más torpes luego sepan cómo entrar al grupo. O pulsa en /cancelar si quieres omitir este paso y terminar.",
-                "ask_rules": "Envíame las normas de <b>%s</b>, separando cada norma por cada líneas y sin poner numeritos al principio de cada una. Sé que es mucho pedir, pero también puedes /cancelar esto y pasamos a otra cosa.",
-                "ask_motd": "Enviame el mensaje del día de <b>%s</b>, que se usa normalmente para describir el grupo o para publicar anuncios del mismo. O bien puedes /cancelar este paso."
+                "ask_link": "Envíame el enlace de invitación de <b>%s</b>, o pulsa en /cancelar para omitir este paso y pasar a otra cosa.",
+                "ask_alias": "Envíame el alias que quieras usar para <b>%s</b>. Se utilizará para que hasta las personas más torpes luego sepan cómo entrar al grupo. O pulsa en /cancelar si quieres saltar al siguiente paso.",
+                "ask_rules": "Envíame las normas de <b>%s</b>, separando cada norma por cada línea y sin poner numeritos al principio de cada una. Sé que es mucho pedir, pero también puedes /cancelar esto y pasar a otra cosa.",
+                "ask_motd": "Enviame el mensaje del día de <b>%s</b>, que se usa normalmente para describir el grupo o para dar la bienvenida a un nuevo usuario. O bien puedes /cancelar este paso.",
+                "invalid_syntax": "Error de sintaxis. Tienes que escribir la orden en el siguiente formato: <pre>/vaso &lt;entero&gt; &lt;mensaje&gt;</pre>\n\nEl entero corresponde al número de grupo registrado en la base. Para consultarla, escribe /grupos.",
+                "sent": "Ya he enviado el recado.",
+                "no_echo": "Un momento. ¿Para qué quieres enviar un mensaje a este mismo grupo?",
+                "message_received": "Mensaje de <b>%s</b>:\n\n"
             }
         },
         "echo": {
@@ -185,7 +197,7 @@
             "commands": [
                 {
                     "command": "/img",
-                    "friendly": "^[Ff]oto de ",
+                    "friendly": "[Ff]oto del? ",
                     "shortcut": "!img",
                     "description": "Devuelve una imagen al azar.",
                     "parameters": [
@@ -197,7 +209,7 @@
                     "friendly": "^[Ff]oto segura de ",
                     "description": "Devuelve una imagen evitando imágenes NSFW a toda costa.",
                     "parameters": [
-                        { "query": true }
+                        { "consulta": true }
                     ],
                     "hidden": true
                 }
@@ -241,8 +253,8 @@
             "commands": [
                 {
                     "command": "/youtube",
-                    "friendly": "^[Pp]on ",
-                    "shortcut": "^[Vv]ídeo de ",
+                    "friendly": "[Pp]on ",
+                    "shortcut": "[Vv]ídeo de ",
                     "description": "Devuelve el primer resultado de lo que encuentre por YouTube con esos términos.",
                     "parameters": [
                         { "consulta": true }
@@ -430,6 +442,31 @@
                 }
             ],
             "description": "Genera un mapa con tierra y agua, al azar."
+        },
+        "start": {
+            "commands": [
+                {
+                    "command": "/start",
+                    "hidden": true
+                }
+            ],
+            "strings": {
+				"greeting": "Hola, soy %s y tú no. No hace falta que nadie me ponga en marcha con start, ya me pongo en marcha yo solito."
+			}
+        },
+        "giphy": {
+            "commands": [
+                {
+                    "command": "/giphy",
+                    "friendly": "[Gg]if de ",
+                    "shortcut": "/gif",
+                    "description": "Enviar un gif aleatorio",
+                    "parameters": [
+                        {"consulta": true}
+                    ]
+                }
+            ],
+            "description": "Envía un gif aleatorio a partir de los términos introducidos."
         }
     }
 }

@@ -48,9 +48,41 @@ class plugin(object):
         # List all groups. #
         if is_command(self, 2, m.content):
             text = self.bot.trans.plugins.administration.strings.groups
+            i = 1
             for gid, attr in self.administration.items():
-                text += '\n • %s |%s|' % (self.groups[gid]['title'], attr['alias'])
+                text += '\n %s. %s (%s)' % (i, self.groups[gid]['title'], attr['alias'])
+                i += 1
             return self.bot.send_message(m, text, extra={'format': 'HTML'})
+        
+        # Send message to another group. #
+        if is_command(self, 10, m.content):
+            input = get_input(m, ignore_reply=False)
+            if not input:
+                return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
+                
+            id_backup = m.conversation.id
+            group_number = int(findall(r"(\w+)", m.content)[1])
+            msg_offset = len(str(group_number)) + 1
+            text = input[msg_offset:]
+            
+            if text and is_int(group_number):
+                m.conversation.id = 0
+                for gid, attr in self.administration.items():
+                    if group_number == 1:
+                        m.conversation.id = int(gid)
+                    group_number -= 1
+                        
+                if m.conversation.id != id_backup and m.conversation.id != 0:
+                    text = self.bot.trans.plugins.administration.strings.message_received % m.conversation.title + text
+                    return self.bot.send_message(m, text, extra={'format': 'HTML'})
+                    #return self.bot.send_message(m, self.bot.trans.plugins.administration.strings.sent, extra={'format': 'HTML'})
+                elif m.conversation.id == id_backup:
+                    return self.bot.send_message(m, self.bot.trans.plugins.administration.strings.no_echo, extra={'format': 'HTML'})
+                else:
+                    m.conversation.id = id_backup
+                    return self.bot.send_message(m, self.bot.trans.errors.send_error, extra={'format': 'HTML'})
+            else:
+                return self.bot.send_message(m, self.bot.trans.plugins.administration.strings.invalid_syntax, extra={'format': 'HTML'})
 
         # Join a group. #
         elif is_command(self, 3, m.content):
@@ -102,7 +134,7 @@ class plugin(object):
                 if not self.administration[gid]['link']:
                     text += '\n\n%s' % self.bot.trans.plugins.administration.strings.nolink
                 else:
-                    text += '\n\n<a href="%s">%s</a>' % (self.bot.trans.plugins.administration.strings.join. self.administration[gid]['link'])
+                    text += '\n\n<a href="%s">%s</a>' % (self.bot.trans.plugins.administration.strings.join.self.administration[gid]['link'])
             return self.bot.send_message(m, text, extra={'format': 'HTML', 'preview': False})
 
         # Rules of a group. #
@@ -177,7 +209,7 @@ class plugin(object):
             if m.conversation.id > 0:
                 return self.bot.send_message(m, self.bot.trans.errors.group_only, extra={'format': 'HTML'})
 
-            if not is_mod(self.bot, m.sender.id):
+            if not is_mod(self.bot, m.sender.id, m.conversation.id):
                 return self.bot.send_message(m, self.bot.trans.errors.permission_required, extra={'format': 'HTML'})
 
             if not input:
@@ -328,7 +360,7 @@ class plugin(object):
         elif step == 1:
             if self.bot.trans.plugins.administration.strings.yes.lower() in m.content.lower():
                 set_step(self.bot, m.conversation.id, get_plugin_name(self), 2)
-                if not m.content.startswith('/cancel') and not m.content.startswith('/done'):
+                if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
                     self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_link % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
             else:
@@ -337,23 +369,23 @@ class plugin(object):
 
         elif step == 2:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 3)
-            if not m.content.startswith('/cancel') and not m.content.startswith('/done'):
+            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
                 self.administration[gid]['link'] = m.content
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_alias % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 3:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 4)
-            if not m.content.startswith('/cancel') and not m.content.startswith('/done'):
+            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
                 self.administration[gid]['alias'] = m.content.lower()
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_rules % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 4:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 5)
-            if not m.content.startswith('/cancel') and not m.content.startswith('/done'):
+            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
                 self.administration[gid]['rules'] = m.content.split('\n')
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_motd % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 5:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), -1)
-            if not m.content.startswith('/cancel') and not m.content.startswith('/done'):
+            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
                 self.administration[gid]['motd'] = m.content

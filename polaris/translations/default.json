@@ -12,7 +12,8 @@
         "private_only": "Only works in <b>private</b>.",
         "admin_required": "Only works with <b>admin privileges</b>.",
         "download_failed": "Download failed.",
-        "exception_found": "Exception found.",
+        "exception_found": "Exception found.",        
+        "send_error": "I couldn't send the message. Maybe I'm outside the group or it doesn't exist.",
         "unknown": "Unknown error."
     },
     "plugins": {
@@ -134,8 +135,16 @@
                     "hidden": true
                 },
                 {
-                    "command": "^new_chat_member$",
+                    "command": "/motd",
                     "description": "Shows the MOTD and the rules to new members",
+                    "parameters": [],
+                    "hidden": true
+                },
+                {
+                    "command": "/message",
+					"friendly": "^Message to ",
+					"shortcut": "/msg",
+                    "description": "Vaso comunicante (envía un mensaje a otro grupo).",
                     "parameters": [],
                     "hidden": true
                 }
@@ -162,7 +171,11 @@
                 "ask_link": "Send me the invite link for <b>%s</b>.\n\nPress /cancel to skip it and finish.",
                 "ask_alias": "Send me the alias you want to use for <b>%s</b>. Alias is used to join easier the group later.\n\nPress /cancel to skip it and finish.",
                 "ask_rules": "Send me the rules for <b>%s</b>, each rule separated with breaklines and without numbers at the begining.\n\nPress /cancel to skip it and finish.",
-                "ask_motd": "Send me the Message of the Day (MOTD) for <b>%s</b>, it's used as description or to show announcements.\n\nPress /cancel to skip it and finish."
+                "ask_motd": "Send me the Message of the Day (MOTD) for <b>%s</b>, it's used as description or to show announcements.\n\nPress /cancel to skip it and finish.",
+                "invalid_syntax": "Syntax error. The correct use of this command is: <pre>/message &lt;int&gt; &lt;message&gt;</pre>\n\nThe integer corresponds to the group number registered in the list. To see it, write /groups.",
+                "sent": "The message was sent.",
+                "no_echo": "You can't send messages to the same group from where you sent it.",
+                "message_received": "Message from <b>%s</b>:\n\n"
             }
         },
         "echo": {
@@ -473,6 +486,31 @@
                 }
             ],
             "description": "Generate a random land map."
+        },
+        "start": {
+            "commands": [
+                {
+                    "command": "/start",
+                    "hidden": true
+                }
+            ],
+            "strings": {
+				"greeting": "Hiya! I'm %s."
+			}
+        },
+        "giphy": {
+            "commands": [
+                {
+                    "command": "/giphy",
+                    "friendly": "!gif",
+                    "shortcut": "/gif",
+                    "description": "Send a random gif",
+                    "parameters": [
+                        {"consulta": true}
+                    ]
+                }
+            ],
+            "description": "Send a random gif with the given query."
         }
     }
 }

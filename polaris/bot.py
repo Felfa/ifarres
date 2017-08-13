@@ -27,7 +27,7 @@ class Bot(object):
             logging.debug('Starting sender worker...')
             while self.started:
                 msg = self.outbox.get()
-                logging.info(' %s@%s sent [%s] %s' % (msg.sender.first_name, msg.conversation.title, msg.type, msg.content))
+                logging.info(' \x1b[1;32m%s\x1b[1;37m@\x1b[1;33m%s \x1b[1;37msent [%s]: \x1b[0;34m%s\x1b[0;0m' % (msg.sender.first_name, msg.conversation.title, msg.type, msg.content))
                 self.bindings.send_message(msg)
         except KeyboardInterrupt:
             pass
@@ -39,9 +39,9 @@ class Bot(object):
             while self.started:
                 msg = self.inbox.get()
                 try:
-                    logging.info('%s@%s sent [%s] %s' % (msg.sender.first_name, msg.conversation.title, msg.type, msg.content))
+                    logging.info(' \x1b[1;32m%s\x1b[1;37m@\x1b[1;33m%s \x1b[1;37msent [%s]: \x1b[0;34m%s\x1b[0;0m' % (msg.sender.first_name, msg.conversation.title, msg.type, msg.content))
                 except AttributeError:
-                    logging.info('%s@%s sent [%s] %s' % (msg.sender.title, msg.conversation.title, msg.type, msg.content))
+                    logging.info(' \x1b[1;32m%s\x1b[1;37m@\x1b[1;33m%s \x1b[1;37msent [%s]: \x1b[0;34m%s\x1b[0;0m' % (msg.sender.title, msg.conversation.title, msg.type, msg.content))
 
                 self.on_message_receive(msg)
 
@@ -159,7 +159,7 @@ class Bot(object):
 
             # If the commands are not /start or /help, set the correct command start symbol. #
             if ((command == '/start' and '/start' in message.content) or
-               (command == '/help' and '/help' in message.content)):
+               (command == '/ayuda' and '/ayuda' in message.content)):
                 trigger = command.replace('/', '^/')
             else:
                 trigger = command.replace('/', '^' + self.config.prefix)
