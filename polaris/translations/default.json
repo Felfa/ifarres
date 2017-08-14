@@ -1,6 +1,7 @@
 {
     "errors": {
         "missing_parameter": "Missing parameter.",
+        "invalid_parameter": "Invalid parameter.",
         "connection_error": "Connection error.",
         "no_results": "No results.",
         "invalid_argument": "Invalid argument.",
@@ -511,6 +512,19 @@
                 }
             ],
             "description": "Send a random gif with the given query."
+        },
+        "greeting": {
+            "commands": [
+                {
+                    "command": "^[Ii]farres",
+                    "description": "Fortunes.",
+                    "parameters": [],
+                    "hidden": true
+                }
+            ],
+            "strings": [
+                "Put your fortunes here"
+            ]
         }
     }
 }

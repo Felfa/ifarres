@@ -1,6 +1,7 @@
 {
     "errors": {
-        "missing_parameter": "Aquí falta algo.",
+        "missing_parameter": "Faltan parámetros.",
+        "invalid_parameter": "Parámetro(s) no válido(s).",
         "connection_error": "No he podido conectarme.",
         "no_results": "No he encontrado nada. Hay que joderse.",
         "invalid_argument": "Argumento no válido.",
@@ -467,6 +468,60 @@
                 }
             ],
             "description": "Envía un gif aleatorio a partir de los términos introducidos."
+        },
+        "greeting": {
+            "commands": [
+                {
+                    "command": "^[Ii]farres",
+                    "friendly": "[Bb]otifarres",
+                    "description": "Frases de Arate.",
+                    "parameters": [],
+                    "hidden": true
+                }
+            ],
+            "strings": [
+                "%s",
+                "%s está apagado o fuera de cobertura",
+                "%s, haz esto. %s, haz lo otro",
+                "Ni %s ni San %s",
+                "Qué quieres",
+                "Presente",
+                "Qué pesados, macho...",
+                "Qué, qué pasa",
+                "¿Me llamaban?",
+                "Sí, yo, ¿qué ocurre?",
+                "No soy %s",
+                "¿Qué acontece?",
+                "Qué quieres tú ahora",
+                "Dime cosas",
+                "Ese soy yo",
+                "Jejejejejeje",
+                "¿Qué pasa con tu rollo?",
+                "Y dale con que la abuela fuma",
+                "Qué, qué pasa",
+                "🙋",
+                "¿Sí?",
+                "Quéeeeeeeeeeeeeee...",
+                "Así me llamo yo","Botarate tú","¿Qué mierdas quieres?",
+                "¿Qué?",
+                "¿Quieres cheja?",
+                "¿Y ahora qué quieres?",
+                "Sí, soy yo",
+                "Pero qué pesados...",
+                "Dime, dime...",
+                "¿Digamelón?",
+                "Qué pasa, chavalesss...",
+                "¿Me han mencionado?",
+                "A su servicio",
+                "¿Yo?",
+                "¿Y por qué yo?",
+                "¿Qué pasa, cómo estamos?",
+                "Aquí 👆",
+                "Mira, macho...",
+                "Dime. Digo... dices. Digo, vamos, tú dirás.",
+                "Hola",
+                "A mí déjame en paz"
+            ]
         }
     }
 }

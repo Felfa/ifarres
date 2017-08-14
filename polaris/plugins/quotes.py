@@ -1,6 +1,6 @@
 from polaris.utils import get_input, is_command
 from polaris.types import AutosaveDict
-from re import findall
+from re import findall, sub
 from random import randint
 
 class plugin(object):
@@ -45,9 +45,13 @@ class plugin(object):
 
             input = input.lower()
             input = input.split(' ', 1)[0]
+            input = sub(r'[^\w]','',input)
 
             if not m.reply:
                 return self.bot.send_message(m, self.bot.trans.errors.needs_reply, extra={'format': 'HTML'})
+                
+            if not input:
+                return self.bot.send_message(m, self.bot.trans.errors.invalid_parameter, extra={'format': 'HTML'})
 
             if input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.already_pinned % input, extra={'format': 'HTML'})
