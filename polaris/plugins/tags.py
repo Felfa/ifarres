@@ -1,4 +1,4 @@
-from polaris.utils import get_input, is_command, has_tag, set_tag, del_tag, first_word, all_but_first_word
+from polaris.utils import get_input, is_command, has_tag, set_tag, del_tag, first_word, all_but_first_word, is_trusted
 
 class plugin(object):
     # Loads the text strings from the bots language #
@@ -13,10 +13,10 @@ class plugin(object):
         if not is_trusted(self.bot, m.sender.id):
             return self.bot.send_message(m, self.bot.trans.errors.permission_required, extra={'format': 'HTML'})
 
+        input = get_input(m)
         if not input:
             return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
-        input = get_input(m)
         if m.reply:
             target = str(m.reply.sender.id)
             name = m.reply.sender.first_name

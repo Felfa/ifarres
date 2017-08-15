@@ -67,7 +67,8 @@ class plugin(object):
             
             if text and is_int(group_number):
                 m.conversation.id = 0
-                for gid, attr in self.administration.items():
+
+                for gid in self.administration:
                     if group_number == 1:
                         m.conversation.id = int(gid)
                     group_number -= 1
@@ -360,7 +361,7 @@ class plugin(object):
         elif step == 1:
             if self.bot.trans.plugins.administration.strings.yes.lower() in m.content.lower():
                 set_step(self.bot, m.conversation.id, get_plugin_name(self), 2)
-                if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
+                if not m.content.startswith('/next') and not m.content.startswith('/done'):
                     self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_link % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
             else:
@@ -369,23 +370,23 @@ class plugin(object):
 
         elif step == 2:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 3)
-            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
+            if not m.content.startswith('/next') and not m.content.startswith('/done'):
                 self.administration[gid]['link'] = m.content
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_alias % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 3:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 4)
-            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
+            if not m.content.startswith('/next') and not m.content.startswith('/done'):
                 self.administration[gid]['alias'] = m.content.lower()
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_rules % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 4:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 5)
-            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
+            if not m.content.startswith('/next') and not m.content.startswith('/done'):
                 self.administration[gid]['rules'] = m.content.split('\n')
                 self.bot.send_message(m, self.bot.trans.plugins.administration.strings.ask_motd % m.conversation.title, extra={'format': 'HTML', 'force_reply': True})
 
         elif step == 5:
             set_step(self.bot, m.conversation.id, get_plugin_name(self), -1)
-            if not m.content.startswith('/cancelar') and not m.content.startswith('/aceptar'):
+            if not m.content.startswith('/next') and not m.content.startswith('/done'):
                 self.administration[gid]['motd'] = m.content

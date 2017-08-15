@@ -154,6 +154,7 @@
             "strings": {
                 "commands": "<b>Comands</b>:",
                 "added": "<b>%s</b> was added to the list of groups.",
+                "removed": "<b>%s</b> was deleted from the list of groups.",
                 "already_added": "<b>%s</b> is already in the list of groups.",
                 "not_added": "<b>%s</b> isn't in the list of groups.",
                 "set": "The parameter of <b>%s</b> was set.",
