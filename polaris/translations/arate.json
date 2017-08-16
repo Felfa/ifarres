@@ -169,7 +169,7 @@
                 "new_chat_member": "Nuevo miembro",
                 "done": "<b>%s</b> configurado con éxito.",
                 "cancel": "Paso omitido. He guardado los cambios de <b>%s</b>.",
-                "yes": "Sí",
+                "yes": "S",
                 "ask_to_add": "¿Añadir el grupo <b>%s</b> a la base? Responde <b>S</b> o <b>N</b>.",
                 "ask_link": "Envíame el enlace de invitación de <b>%s</b>.\n\nPuedes omitir este paso con /next o puedes guardar ya los cambios con /done.",
                 "ask_alias": "Envíame el alias que quieras usar para <b>%s</b>. Se utilizará para que hasta las personas más torpes luego sepan cómo entrar al grupo.\n\nPuedes omitir este paso con /next o puedes guardar ya los cambios con /done.",

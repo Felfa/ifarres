@@ -30,7 +30,7 @@ class plugin(object):
             cancel_steps(self.bot, m.conversation.id)
 
         elif step == 1:
-            self.bot.send_message(m, 'Vale, ahora send nudes, o /cancelar', extra={'format': 'HTML'})
+            self.bot.send_message(m, 'Vale, ahora send nudes, o /next', extra={'format': 'HTML'})
             set_step(self.bot, m.conversation.id, get_plugin_name(self), 2)
 
         elif step == 2:

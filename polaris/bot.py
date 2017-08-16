@@ -107,11 +107,11 @@ class Bot(object):
             if step:
                 for plugin in self.plugins:
                     if get_plugin_name(plugin) == step['plugin'] and hasattr(plugin, 'steps'):
-                        if msg.content.startswith('/cancelar'):
+                        if msg.content.startswith('/next'):
                             plugin.steps(msg, -1)
                             cancel_steps(self, msg.conversation.id)
 
-                        if msg.content.startswith('/aceptar'):
+                        if msg.content.startswith('/done'):
                             plugin.steps(msg, 0)
                             cancel_steps(self, msg.conversation.id)
 
