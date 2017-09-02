@@ -12,12 +12,12 @@ class plugin(object):
         i = randint(0, len(self.strings) - 1)
         
         # NOTE: Only for Arate translation #
-        if i < 2:
+        if i < 3:
             text = self.strings[i] % self.bot.info.first_name
             if not i:
                 # If it's the first quote, reverse and capitalize
                 text = text[::-1].capitalize()
-        elif i < 4:
+        elif i < 5:
             text = self.strings[i] % (self.bot.info.first_name, self.bot.info.first_name)
         else:
             text = self.strings[i]

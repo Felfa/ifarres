@@ -473,8 +473,8 @@
         "greeting": {
             "commands": [
                 {
-                    "command": "^[Ii]farres",
-                    "friendly": "[Bb]otifarres",
+                    "command": "^[Aa]rate",
+                    "friendly": "[Bb]otarate",
                     "description": "Frases de Arate.",
                     "parameters": [],
                     "hidden": true
@@ -483,6 +483,7 @@
             "strings": [
                 "%s",
                 "%s está apagado o fuera de cobertura",
+                "No soy %s",
                 "%s, haz esto. %s, haz lo otro",
                 "Ni %s ni San %s",
                 "Qué quieres",
@@ -491,7 +492,6 @@
                 "Qué, qué pasa",
                 "¿Me llamaban?",
                 "Sí, yo, ¿qué ocurre?",
-                "No soy %s",
                 "¿Qué acontece?",
                 "Qué quieres tú ahora",
                 "Dime cosas",

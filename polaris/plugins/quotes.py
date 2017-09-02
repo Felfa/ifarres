@@ -74,6 +74,8 @@ class plugin(object):
 
             input = input.lower()
             input = input.split(' ', 1)[0]
+            
+            print(input)
 
             if not input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.not_found % input, extra={'format': 'HTML'})
