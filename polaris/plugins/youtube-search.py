@@ -24,10 +24,10 @@ class plugin(object):
 
         data = send_request(url, params)
 
-        if 'error' in data and len(data['items']) == 0:
+        if len(data['items']) == 0: # and 'error' in data:
             return self.bot.send_message(m, self.bot.trans.errors.no_results)
-
-        if is_command(self, 1, m.content):
+            
+        elif is_command(self, 1, m.content):
             text = 'https://youtu.be/%s' % data['items'][0]['id']['videoId']
         
             self.bot.send_message(m, text, extra={'format': 'HTML', 'preview': True})
