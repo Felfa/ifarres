@@ -280,7 +280,7 @@
             "commands": [
                 {
                     "command": "/acerca",
-                    "friendly": "^¿[Qq]ui[ée]n es (Ifarres|Arate)?",
+                    "friendly": "^¿?[Qq]ui[ée]n es (Ifarres|Arate)\\?",
                     "description": "Información sobre mí.",
                     "parameters": []
                 }
@@ -469,6 +469,23 @@
                 }
             ],
             "description": "Envía un gif aleatorio a partir de los términos introducidos."
+        },
+        "calc": {
+            "commands": [
+                {
+                    "command": "/calculadora",
+                    "friendly": "[Cc]alcula ",
+                    "shortcut": "/calc",
+                    "description": "Envíame una operación matemática como parámetro y te devolveré el resultado (si me lo has escrito bien).",
+                    "parameters": [
+                        {"expresión": true}
+                    ]
+                }
+            ],
+            "description": "Devolveré el resultado de la operación matemática que me envíes como parámetro.",
+            "strings": {
+				"overflow": "Escolta noi, t'has passat."
+			}
         },
         "greeting": {
             "commands": [

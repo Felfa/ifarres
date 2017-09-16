@@ -514,6 +514,23 @@
             ],
             "description": "Send a random gif with the given query."
         },
+        "calc": {
+            "commands": [
+                {
+                    "command": "/calculator",
+                    "friendly": "[Cc]alculate ",
+                    "shortcut": "/calc",
+                    "description": "Send the result of a mathematical expression.",
+                    "parameters": [
+                        {"expr": true}
+                    ]
+                }
+            ],
+            "description": "Send the result of a mathematical expression.",
+            "strings": {
+				"overflow": "Overflow."
+			}
+        },
         "greeting": {
             "commands": [
                 {
