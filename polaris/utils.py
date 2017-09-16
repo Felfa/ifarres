@@ -246,7 +246,7 @@ def load_plugin_list():
     return sorted(plugin_list)
 
 
-def send_request(url, params=None, headers=None, files=None, data=None, post=False, parse=True):
+def send_request(url, params=None, headers=None, files=None, data=None, post=False, parse=True, get_text=False):
     try:
         if post:
             r = requests.post(url, params=params, headers=headers, files=files, data=data, timeout=100)
@@ -263,6 +263,8 @@ def send_request(url, params=None, headers=None, files=None, data=None, post=Fal
     try:
         if parse:
             return DictObject(json.loads(r.text))
+        elif get_text:
+            return r.text
         else:
             return r.url
     except:
