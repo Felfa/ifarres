@@ -1,4 +1,4 @@
-from polaris.utils import get_input, is_command
+from polaris.utils import get_input, is_command, is_mod, is_trusted
 from polaris.types import AutosaveDict
 from re import findall, sub
 from random import randint
@@ -55,6 +55,12 @@ class plugin(object):
 
             if input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.already_pinned % input, extra={'format': 'HTML'})
+                
+            if len(input) < 4:
+                return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.too_short, extra={'format': 'HTML'})
+            
+            if input == self.bot.info.first_name.lower():
+                return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.illegal_pinname, extra={'format': 'HTML'})
 
             self.pins[input] = {
                 'content': m.reply.content.replace('<','&lt;').replace('>','&gt;'),
@@ -81,7 +87,8 @@ class plugin(object):
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.not_found % input, extra={'format': 'HTML'})
 
             if not m.sender.id == self.pins[input]['creator']:
-                return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.not_creator % input, extra={'format': 'HTML'})
+                if not is_mod(self.bot, m.sender.id, m.conversation.id):
+                    return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.not_creator % input, extra={'format': 'HTML'})
             try:
                 del(self.pins[input])
             except KeyErrorException:

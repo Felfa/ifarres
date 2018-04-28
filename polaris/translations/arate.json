@@ -327,7 +327,9 @@
                 "unpinned": "Se ha eliminado la cita <b>%s</b>.",
                 "already_pinned": "<b>%s</b> ya existe, así que no lo guardaré.",
                 "not_found": "<b>%s</b> no existe. ¿Te lo has inventado?",
-                "not_creator": "No tienes derecho a eliminar la cita <b>%s</b>."
+                "not_creator": "No tienes derecho a eliminar la cita <b>%s</b>.",
+                "too_short": "No me intentes estropear, cabroncete.",
+                "illegal_pinname": "No te permito hacer eso."
             }
         },
         "reminders": {

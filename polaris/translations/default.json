@@ -346,7 +346,9 @@
                 "unpinned": "<b>#%s</b> was deleted.",
                 "already_pinned": "<b>#%s</b> already exists, can't be set.",
                 "not_found": "<b>#%s</b> doesn't exist.",
-                "not_creator": "<b>#%s</b> you don't have permission to delete it."
+                "not_creator": "<b>#%s</b> you don't have permission to delete it.",
+                "too_short": "Pin name is too short.",
+                "illegal_pinname": "Please, give the pin another name."
             }
         },
         "lastfm": {
