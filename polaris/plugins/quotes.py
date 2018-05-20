@@ -44,14 +44,16 @@ class plugin(object):
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
             input = input.lower()
-            input = input.split(' ', 1)[0]
-            input = sub(r'[^\w]','',input)
+            input = sub(r'[^\w\ ]','',input)  # Removes every special character.
+            input = " ".join(input.split())   # Removes any duplicated whitespace.
+            #input = input.split(' ', 1)[0]
+            #input = sub(r'[^\w]','',input)
 
             if not m.reply:
                 return self.bot.send_message(m, self.bot.trans.errors.needs_reply, extra={'format': 'HTML'})
                 
             if not input:
-                return self.bot.send_message(m, self.bot.trans.errors.invalid_parameter, extra={'format': 'HTML'})
+                return self.bot.send_message(m, input, extra={'format': 'HTML'})#self.bot.trans.errors.invalid_parameter, extra={'format': 'HTML'})
 
             if input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.already_pinned % input, extra={'format': 'HTML'})
@@ -79,7 +81,9 @@ class plugin(object):
                 return self.bot.send_message(m, self.bot.trans.errors.missing_parameter, extra={'format': 'HTML'})
 
             input = input.lower()
-            input = input.split(' ', 1)[0]
+            input = sub(r'[^\w\ ]','',input)
+            input = " ".join(input.split())
+            #input = input.split(' ', 1)[0]
             
             print(input)
 
@@ -102,22 +106,24 @@ class plugin(object):
         # Check what pin was triggered #
         else:
             # Finds the first 3 pins of the message and sends them. #
-            pins = findall(r"(\w+)", m.content.lower())
-            count = 3
+            #pins = findall(r"(\w+)", m.content.lower())
+            if not randint(0,4):
+                pins = m.content.lower()
+                count = 3
 
-            for pin in pins:
-                if pin in self.pins:
-                    # You can reply with a pin and the message will reply too. #
-                    if m.reply:
-                        reply = m.reply.id
-                    else:
-                        reply = m.id
+                for pin in self.pins:
+                    if pins.find(pin) > -1:
+                        # You can reply with a pin and the message will reply too. #
+                        if m.reply:
+                            reply = m.reply.id
+                        else:
+                            reply = m.id
 
-                    randint(0,4) or self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
-                    count -= 1
+                        self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
+                        count -= 1
 
-                if count == 0:
-                    return
+                    if count == 0:
+                        return
 
 
     def update_triggers(self):
