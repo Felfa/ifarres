@@ -53,7 +53,7 @@ class plugin(object):
                 return self.bot.send_message(m, self.bot.trans.errors.needs_reply, extra={'format': 'HTML'})
                 
             if not input:
-                return self.bot.send_message(m, input, extra={'format': 'HTML'})#self.bot.trans.errors.invalid_parameter, extra={'format': 'HTML'})
+                return self.bot.send_message(m, self.bot.trans.errors.invalid_parameter, extra={'format': 'HTML'})
 
             if input in self.pins:
                 return self.bot.send_message(m, self.bot.trans.plugins.pins.strings.already_pinned % input, extra={'format': 'HTML'})
