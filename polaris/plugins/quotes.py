@@ -1,6 +1,6 @@
 from polaris.utils import get_input, is_command, is_mod, is_trusted
 from polaris.types import AutosaveDict
-from re import findall, sub
+from re import findall, sub, match
 from random import randint
 
 class plugin(object):
@@ -107,23 +107,42 @@ class plugin(object):
         else:
             # Finds the first 3 pins of the message and sends them. #
             #pins = findall(r"(\w+)", m.content.lower())
-            if not randint(0,4):
+            if  randint(0,4):
+                replymessage = False
                 pins = m.content.lower()
-                count = 3
-
+                #count = 3
+                
+                # Checks if the message contains a saved pin
                 for pin in self.pins:
                     if pins.find(pin) > -1:
+                        pinlength = len(pin)
+                        textlength = len(pins)
+                        foundpin = pins.find(pin)
+                        
+                        # Found at first position of sent text and checks if it has a non-alphanumerical char next to the matching word
+                        if foundpin == 0:
+                            if textlength == pinlength:
+                                replymessage = True
+                            elif textlength > pinlength and match('\W',pins[foundpin + pinlength]):
+                                replymessage = True
+                                
+                        # Ensures that the keyword is between spaces.
+                        elif foundpin > 0 and match('\W',pins[foundpin-1]):
+                            if foundpin + pinlength == textlength or match('\W',pins[foundpin + pinlength]): # Last or middle word
+                                replymessage = True
+                            
                         # You can reply with a pin and the message will reply too. #
                         if m.reply:
                             reply = m.reply.id
                         else:
                             reply = m.id
 
-                        self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
-                        count -= 1
+                        if replymessage:
+                            self.bot.send_message(m, self.pins[pin]['content'], self.pins[pin]['type'], extra={'format': 'HTML'}) #, reply = reply)
+                        #count -= 1
 
-                    if count == 0:
-                        return
+                    #if count == 0:
+                    #    return
 
 
     def update_triggers(self):
