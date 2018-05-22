@@ -107,7 +107,7 @@ class plugin(object):
         else:
             # Finds the first 3 pins of the message and sends them. #
             #pins = findall(r"(\w+)", m.content.lower())
-            if  randint(0,4):
+            if not randint(0,4):
                 replymessage = False
                 pins = m.content.lower()
                 #count = 3
