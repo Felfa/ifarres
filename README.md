@@ -1,3 +1,8 @@
+# ⚠️ DESCONTINUADO
+Este bot está obsoleto y no recibirá más actualizaciones. Puedes encontrar una implementación más nueva en [ifarres_v3](https://gitlab.com/Lexemus/ifarres_v3).
+
+Se dejará este repositorio archivado para sólo lectura.
+
 # Ifarres
 Ifarres es un bot modular para Telegram con múltiples funciones, basado en [Polaris](https://git.io/polaris).
 
